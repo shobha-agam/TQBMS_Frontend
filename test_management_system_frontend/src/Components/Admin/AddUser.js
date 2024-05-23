@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import './Login.css'
+import '../Auth/Login.css'
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { createUser, resetCreateUserState } from '../../Redux/Feature/AuthSlices/SignupSlice';
 import { toast } from 'react-toastify';
 
-const CreateUser = () => {
+function AddUser() {
     const [values, setValues] = useState({
         user_name: '',
         user_email: '',
-        user_type: 'user',
+        user_type: '',
         password: '',
         password2: '',
     });
@@ -25,21 +25,20 @@ const CreateUser = () => {
 
     useEffect(() => {
         if (success) {
-            setValues({ user_name: '', user_email: '', user_type: 'user', password: '', password2: '' });
+            setValues({ user_name: '', user_email: '', user_type: '', password: '', password2: '' });
             // alert('Registration Successful!');
-            toast.success("User Register Successfully.")
-            navigate('/');
-            
+            toast.success("User Added Successfully.")
+            navigate('/getallusers');
+
             dispatch(resetCreateUserState()); // Reset state after successful creation
         }
     }, [success, dispatch, navigate]);
-
     return (
         <>
             <div className='showcase'>
-                <div className="container" style={{ marginTop: '2%',height: "100%" }}>
+                <div className="container" style={{ marginTop: '2%', height: "100%" }}>
                     <div className="login-container">
-                        <h1>Sign Up</h1>
+                        <h1>Add <span style={{ color: "#cf9934" }}>User</span> </h1>
                         <form className="form-login" onSubmit={handleSubmit}>
                             <div className="textfield">
                                 <label for="user_email"> E-mail</label>
@@ -51,7 +50,7 @@ const CreateUser = () => {
                                 <label for="user_name">Full Name</label>
                                 <input type="text" name="user_name" id="user_name" required
                                     // value={values.user_name}
-                                    onChange={(e) => setValues({ ...values, user_name: e.target.value })}/>
+                                    onChange={(e) => setValues({ ...values, user_name: e.target.value })} />
                             </div>
 
                             {/* <div className="textfield">
@@ -62,6 +61,14 @@ const CreateUser = () => {
                             </div> */}
 
                             <div className="textfield">
+                                <label for="user_type">User Type</label>
+                                <select id="user_type" name="user_type" value={values.user_type} onChange={(e) => setValues({ ...values, user_type: e.target.value })}>
+                                    <option value="admin">Admin</option>
+                                    <option value="user">User</option>
+                                </select>
+                            </div>
+
+                            <div className="textfield">
                                 <label for="password"> Password</label>
                                 <input type="password" name="password" id="password" required
                                     // value={values.password}
@@ -69,23 +76,20 @@ const CreateUser = () => {
                             </div>
                             <div className="textfield">
                                 <label for="password2"> Confirm Password</label>
-                                <input type="password" name="password2"id="password2" required
+                                <input type="password" name="password2" id="password2" required
                                     // value={values.password2}
-                                    onChange={(e) => setValues({ ...values, password2: e.target.value })}/>
+                                    onChange={(e) => setValues({ ...values, password2: e.target.value })} />
                             </div>
-                            <button className="btn-login">Sign Up </button>
+                            <button className="btn-login">Submit </button>
 
-                            <div style={{ textAlign: 'end' }} >
-                                <a className="text--create-account" href='/'>Already Register,Login Here...</a>
-                            </div>
+                           
                         </form>
                     </div>
                 </div>
             </div>
 
-
         </>
     )
 }
 
-export default CreateUser;
+export default AddUser;

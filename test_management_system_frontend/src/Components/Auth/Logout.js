@@ -1,7 +1,19 @@
 import React from 'react'
 import './Login.css';
-
+import { useDispatch } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
+import { resetLoginState } from '../../Redux/Feature/AuthSlices/LoginSlice';
+ 
 function Logout() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.clear(); // Clear access token and other user data
+        navigate('/');
+        // dispatch an action to reset user login state in Redux
+        dispatch(resetLoginState()); 
+    };
     return (
         <>
             <div className='showcase' style={{}}>
@@ -16,7 +28,7 @@ function Logout() {
 
                             <div style={{textAlign:'center'}}>
                                 <button className="btn-login"
-                                    // onClick={handleLogout}
+                                    onClick={handleLogout}
                                     style={{
                                         flex: 1, flexDirection: 'row',
                                         marginHorizontal: 20,
@@ -28,7 +40,7 @@ function Logout() {
                             </div>
 
                             <div style={{textAlign:'center'}}>
-                                <button className="btn-login"
+                                <Link to='/topic' ><button className="btn-login"
                                     style={{
                                         flex: 1, flexDirection: 'row',
                                         marginHorizontal: 20,
@@ -36,7 +48,7 @@ function Logout() {
                                         
                                     }} >
                                     Cancel
-                                </button>
+                                </button></Link>
                             </div>
 
 

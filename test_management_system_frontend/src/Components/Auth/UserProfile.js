@@ -1,6 +1,16 @@
-import React from 'react'
+import React,{ useEffect} from 'react'
 import mbggg from '../Images/profile.png';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
 const UserProfile = () => {
+
+    const userID = useParams();
+    console.log("comopenet userid----", userID)
+    const users = useSelector((state) => state.user.selectedUser);
+    console.log("selected users profile---",users)
+
     return (
         <>
             <div className="modal">
@@ -22,26 +32,27 @@ const UserProfile = () => {
                                     <img src={mbggg} style={{ textAlign: 'center', height: '145px', width: '155px', marginTop: '10px', }} alt="User profile picture" />
                                 </div>
                                 <div>
-                                    <strong>User ID:</strong>
+                                    <strong>User ID:</strong>  
+                                    {users.id}
                                     <br />
-                                    <strong>Name:</strong>
+                                    <strong>Name:</strong> {users.user_name}
                                     <br />
-                                    <strong>Email:</strong>
+                                    <strong>Email:</strong> {users.user_email}
                                     <br />
 
-                                    <strong>User Type:</strong>
+                                    <strong>User Type:</strong> {users.user_type}
                                     <br />
                                     <strong>Active Status:</strong>
-                                    {/* {selectedUser?.is_active === true ? 'True' : 'False'} */}
+                                     {users?.is_active === true ? 'True' : 'False'}
                                     <br />
-                                    <strong>Created At:</strong>
+                                    <strong>Created At:</strong>{users.created_at}
                                     <br />
-                                    <strong>Updated At:</strong>
+                                    <strong>Updated At:</strong>{users.updated_at}
                                     <br />
                                 </div>
                             </div >
                             <div style={{ textAlign: "center" }}>
-                                <button style={{ color: "#fcfbfa", background: '#b07523' }} >Close</button>
+                                <Link to='/getallusers'><button style={{ color: "#fcfbfa", background: '#b07523' }} >Close</button></Link>
                             </div>
                         </div>
                     </div>
