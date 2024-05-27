@@ -8,13 +8,13 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import { Button } from '@mui/material';
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ModeEditOutlineRoundedIcon from '@mui/icons-material/ModeEditOutlineRounded';
 import DeleteForeverRoundedIcon from '@mui/icons-material/DeleteForeverRounded';
 
-function QuestionBank() {
+function GetAllQuestions() {
     const columns = [
-        { id: 'id', name: 'Question Id' },
+        { id: 'qid', name: 'Question Id' },
         { id: 'topic', name: 'Topic' },
         { id: 'question', name: 'Question' },
         { id: 'types', name: 'Type' },
@@ -60,7 +60,7 @@ function QuestionBank() {
                             <TableHead>
                                 <TableRow>
                                     {columns.map((column) => (
-                                        <TableCell style={{ backgroundColor: 'rgb(161, 164, 166)', color: 'black', fontWeight: 'bold' }} key={column.id}>{column.name}</TableCell>
+                                        <TableCell style={{ backgroundColor: 'rgb(161, 164, 166)', color: 'black',fontWeight:'bold' }} key={column.id}>{column.name}</TableCell>
                                     ))}
                                 </TableRow>
                             </TableHead>
@@ -89,4 +89,4 @@ function QuestionBank() {
     );
 }
 
-export default QuestionBank;
+export default GetAllQuestions;

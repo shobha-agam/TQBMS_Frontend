@@ -50,7 +50,7 @@ const GetAllUsers = () => {
     return (
         <>
             <div style={{ textAlign: 'center' }}>
-                <h1>All <span style={{ color: "#cf9934" }}>Users Details</span></h1>
+                <h1>All <span style={{ color: "#a25920" }}>Users </span>Details</h1>
                 <div style={{ textAlign: 'right', marginRight: '3%' }}>
                     <Link to='/adduser'>
                         <button class="button-30" role="button"><span style={{ color: "white" }}>Add User</span></button>
@@ -67,7 +67,7 @@ const GetAllUsers = () => {
                                 <TableHead>
                                     <TableRow>
                                         {columns.map((column) => (
-                                            <TableCell style={{ backgroundColor: 'black', color: 'white' }} key={column.id}>{column.name}</TableCell>
+                                            <TableCell style={{ backgroundColor: 'rgb(161 164 166)', color: 'black' , fontWeight: 'bold'}} key={column.id}>{column.name}</TableCell>
                                         ))}
                                     </TableRow>
                                 </TableHead>
@@ -95,7 +95,7 @@ const GetAllUsers = () => {
                                                     </TableCell> */}
 
                                                     <TableCell>
-                                                        <Link to={`/updateuser/${row.id}`}>
+                                                        <Link to={`/edituser/${row.id}`}>
                                                             <ModeEditOutlineRoundedIcon color="success" />
                                                             {/* <Button variant='outlined' size='small' color='primary' sx={{ margin: '2px' }}>
                                                                 Update

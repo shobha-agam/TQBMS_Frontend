@@ -26,14 +26,18 @@ const Login = () => {
     useEffect(() => {
         if (success) {
             notifySuccess();
-            console.log('loged in usersdata--', userData)
+            console.log('loged in usersdata--', userData.user_email)
             localStorage.setItem('token', userData.token['access']);
             const token = localStorage.getItem('token');
             // console.log("local storage get token=", token)
             localStorage.setItem('user_type', userData.user_type);
             localStorage.setItem('id', userData.id);
             const id = localStorage.getItem('id')
-            console.log('loged in user id==', id)
+            localStorage.setItem("user_email",userData.user_email)
+            const email= localStorage.getItem('user_email')
+            console.log('************',email)
+            
+            // console.log('loged in user id==', id)
             //   if (userData.user_type === 'viewer') {
             //     navigate('/getproperty');
             //   } else if (userData.user_type === 'admin') {

@@ -32,7 +32,7 @@
 
 .login-container {
     z-index: 1;
-    background-color: rgb(241, 234, 221);
+    background-color:rgb(161 164 166);
     width: 25vw;
     min-width: 400px;
     min-height: 390px;
@@ -45,7 +45,7 @@
 .login-container > h1{
     font-family: 'Karla';
     font-size: 42px;
-    color: #cf6717;
+    color: #a25920;
     line-height: 50px;
 }
 
@@ -63,7 +63,7 @@ label {
     font-size: 12px;
     line-height: 12px;
     letter-spacing: 0.1em;
-    color: #0b0a0a;
+    color: white;
     cursor: text;
     text-transform: uppercase;
 }
@@ -89,7 +89,7 @@ input:focus {
 }
 
 .text--create-account {
-    color: #e3790e;
+    color: white;
     font-family: 'Karla';
 }
 
@@ -103,7 +103,7 @@ button {
     padding: 8px 50px;
     margin: 10px 0;
     border-radius: 50px;
-    background-color: #b07523;
+    background-color: #052b45;
     cursor: pointer;
 }
 /* 

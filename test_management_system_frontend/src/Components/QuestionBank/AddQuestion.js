@@ -55,7 +55,7 @@ function AddQuestion() {
                 <div className="container">
                     <div className="login-container">
                         <h1>
-                            Add<span style={{ color: "#cf9934" }}>Question</span>
+                            Add <span style={{ color:"black" }}>Question</span>
                         </h1>
                         <ToastContainer />
                         <form onSubmit={handleSubmit}

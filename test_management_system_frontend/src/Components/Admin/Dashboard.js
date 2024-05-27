@@ -11,7 +11,7 @@ function Dashboard(){
 return(
     <>
      <div style={{ display: 'flex' }}>
-      <Card sx={{ boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3)' ,width: 300, minWidth: 200, flex: '1 1 auto', marginRight: 2 ,backgroundColor: '#b0bacd',marginTop:18,height:250,'&:hover': { backgroundColor: 'darkblue',color:'white' } }}>
+      <Card sx={{ boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.3)' ,width: 300, minWidth: 200, flex: '1 1 auto', marginRight: 2 ,backgroundColor: '#b0bacd',marginTop:18,height:250,'&:hover': { color:'white',backgroundColor: 'darkblue'} }}>
         <CardContent>
           <Typography variant="h6" component="div"sx={{  fontFamily: 'Arial, sans-serif',textAlign: 'center', paddingTop:10,fontWeight: 'bold' }}>
             <Link to='/getallusers' style={{  textDecoration: 'none' }}>All User Details</Link>

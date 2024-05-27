@@ -13,7 +13,6 @@ import GetAllUsers from './Components/Admin/GetAllUsers';
 import ChangeUserType from './Components/Admin/ChangeUserType';
 import Topic from './Components/Topics/Topic';
 import GetUserByID from './Components/Admin/GetUserByID';
-import UpdateUser from './Components/Admin/UpdateUser';
 import DeleteUser from './Components/Admin/DeleteUser';
 import AddTopic from './Components/Topics/AddTopic';
 import OwnerTopicList from './Components/Topics/OwnerTopicList';
@@ -25,6 +24,9 @@ import AddQuestion from './Components/QuestionBank/AddQuestion';
 import AddQuestionChoiceForm from './Components/QuestionBank/AddQuestionChoiceForm';
 import DeleteQuestion from './Components/QuestionBank/DeleteQuestion';
 import UserAcessLevelList from './Components/Topics/UserAcessLevelList';
+import UserUpdateForm from './Components/Admin/EditUser';
+import GetAllTopicsList from './Components/Admin/GetAllTopicsList';
+import ProvideAccess from './Components/Topics/ProvideAccess';
 
 function App() {
   return (
@@ -46,11 +48,11 @@ function App() {
           <Route path='/getallusers' element={<GetAllUsers />}></Route>
           <Route path='/changeusertype/:id' element={<ChangeUserType />}></Route>
           <Route path='/getuserbyid/:id' element={<GetUserByID />}></Route>
-          <Route path='/updateuser/:id' element={<UpdateUser />}></Route>
           <Route path='/delete/:id' element={<DeleteUser />}></Route>
           <Route path='/adduser' element={<AddUser />}></Route>
           <Route path='/dashboard' element={<Dashboard />}></Route>
-
+          <Route path='edituser/:id' element={<UserUpdateForm />}></Route>
+          <Route path='/getalltopics' element={<GetAllTopicsList/>}></Route>
 
           {/* Topic Routes */}
           <Route path='/topic' element={<Topic />}></Route>
@@ -60,17 +62,18 @@ function App() {
 
           {/* Question bank path */}
           <Route path='/questionbank' element={<QuestionBank />}></Route>
-          <Route path='/addquestion' element={<AddQuestion/>}></Route>
-          <Route path='/qestionchoices' element={<AddQuestionChoiceForm/>}></Route>
-          <Route path='/deletequestion/:id' element={<DeleteQuestion/>}></Route>
+          <Route path='/addquestion' element={<AddQuestion />}></Route>
+          <Route path='/qestionchoices' element={<AddQuestionChoiceForm />}></Route>
+          <Route path='/deletequestion/:id' element={<DeleteQuestion />}></Route>
 
 
           {/* User-Topic table routes */}
           <Route path='/ownerlist' element={<OwnerTopicList />}></Route>
 
           {/* Users Access levels list route */}
-          <Route path='/usersaccesslevel' element={<UserAcessLevelList/>}></Route>
+          <Route path='/usersaccesslevel' element={<UserAcessLevelList />}></Route>
 
+<Route path='/provideaccess/:id' element={<ProvideAccess/>}></Route>
         </Routes>
 
         {/* <Footer /> */}

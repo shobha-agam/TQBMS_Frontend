@@ -45,7 +45,7 @@ function AddTopic() {
         <div className="container">
           <div className="login-container">
             <h1>
-              Add<span style={{ color: "#cf9934" }}> Topic</span>
+              Add<span style={{ color: "black" }}> Topic</span>
             </h1>
             <form
               onSubmit={handleSubmit}
@@ -57,8 +57,9 @@ function AddTopic() {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Name"
+          
                 required
-                style={{ width: "100%", marginBottom: "10px", padding: "8px" }}
+                style={{ width: "100%", marginBottom: "10px", padding: "8px", }}
               />
               <input
                 type="text"

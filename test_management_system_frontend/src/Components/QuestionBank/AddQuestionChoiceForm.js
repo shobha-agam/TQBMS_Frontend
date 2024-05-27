@@ -56,9 +56,10 @@ const AddQuestionChoiceForm = () => {
             <div className="showcase">
                 <div className="container">
                     <div className="login-container">
-                        <h3>
-                            Enter<span style={{ color: "#cf9934" }}> Question </span>Choice:
-                        </h3>
+                        <h2>
+                            Enter<span style={{ color: "rgb(162, 89, 32)" }}> Question </span>Choice
+                        </h2>
+         
 
                         <form
                             onSubmit={handleSubmit}

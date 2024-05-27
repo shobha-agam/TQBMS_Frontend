@@ -17,6 +17,7 @@ import { Link, useLocation, useParams } from 'react-router-dom';
 import axios from 'axios';
 
 
+
 const darkTheme = createTheme({
     palette: {
 
@@ -46,7 +47,7 @@ const Header = () => {
         setAnchorElUser(null);
     };
 
-    const [userDetails, setUserDetails] = useState([]);
+    const [userDetails, setUserDetails] = useState([]);// getting loged in user's user_type
     const [auth, setAuth] = useState(true);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [anchorEl, setAnchorEl] = useState(null);
@@ -64,8 +65,9 @@ const Header = () => {
                         },
                     }
                     );
-                    console.log("current user profile ==", userData.data.user_type)
+                    // console.log("current user profile ==", userData.data.user_email)
                     setUserDetails(userData.data.user_type);
+                    // setUserEmail(userData.data.user_email);
                     // console.log('+++++++++++==============',setId)
                 } catch (error) {
                     console.log("Data fetching Error Occured in User Data");
@@ -75,12 +77,49 @@ const Header = () => {
                     }
                 }
             }
-
             getUserData();
         }
     }, []);
 
+    const [accessLevel, setAccessLevel] = useState(null);// getting loged in user's access_level
+    const email = localStorage.getItem('user_email')
+    const [userEmail, setUserEmail] = useState(email || '')
+
+    useEffect(() => {
+        const fetchAccessLevel = async () => {
+            try {
+                const response = await axios.get(`http://127.0.0.1:8000/accesslevels/`, {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                        'Content-Type': 'application/json',
+                    },
+                    params: {
+                        user_email: userEmail,
+                    },
+                });
+
+                if (response.status === 200) {
+                    // console.log('email----------', userEmail)
+                    // console.log('getting access_level res---',response.data[0].access_level)
+
+                    setAccessLevel(response.data[0].access_level);
+                } else {
+                    console.error('Error fetching access level:', response.statusText);
+                }
+            } catch (error) {
+                console.error('Error fetching access level:', error);
+            }
+        };
+
+        if (token && userEmail) {
+            fetchAccessLevel();
+        } else {
+            console.error("No token or user email found");
+        }
+    }, [token, userEmail]);
+
     console.log("cureent user details in header ====", userDetails)
+    console.log("cureent user access level header ====", accessLevel)
 
     return (
         <>
@@ -138,7 +177,7 @@ const Header = () => {
                                             <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/getallusers' style={{ color: "#d6cac2", textDecoration: 'none' }}>
                                                 Users</Link></Typography>
 
-                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/topic' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/getalltopics' style={{ color: "#d6cac2", textDecoration: 'none' }}>
                                                 Topics</Link></Typography>
 
                                             {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/questionbank' style={{ color: "#d6cac2", textDecoration: 'none' }}>
@@ -150,7 +189,7 @@ const Header = () => {
                                     </>
                                 )}
 
-                                {userDetails === 'user' && (
+                                {userDetails === 'user' && accessLevel === 'Owner' && (
                                     <>
                                         <Box sx={{ flexGrow: 4, display: { xs: 'none', md: 'flex' }, marginLeft: '39%' }}>
                                             <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}>
@@ -172,6 +211,49 @@ const Header = () => {
                                     </>
                                 )}
 
+                                {userDetails === 'user' && accessLevel === 'Editor' && (
+                                    <>
+                                        <Box sx={{ flexGrow: 4, display: { xs: 'none', md: 'flex' }, marginLeft: '39%' }}>
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}>
+                                                <Link to='/dashboard' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                    Dashboard</Link></Typography> */}
+
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/getallusers' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Users</Link></Typography> */}
+
+                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/topic' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Topics</Link></Typography>
+
+                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/questionbank' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Question Bank</Link></Typography>
+
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/ownerlist' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Topic-Owner</Link></Typography> */}
+                                        </Box>
+                                    </>
+                                )}
+
+                                {userDetails === 'user' && accessLevel === 'Viewer' && (
+                                    <>
+                                        <Box sx={{ flexGrow: 4, display: { xs: 'none', md: 'flex' }, marginLeft: '39%' }}>
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}>
+                                                <Link to='/dashboard' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                    Dashboard</Link></Typography> */}
+
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/getallusers' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Users</Link></Typography> */}
+
+                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/topic' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Topics</Link></Typography>
+
+                                            <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/questionbank' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Question Bank</Link></Typography>
+
+                                            {/* <Typography variant="h6" color="#EA6912" component="div" sx={{ flexGrow: 0.4 }}><Link to='/ownerlist' style={{ color: "#d6cac2", textDecoration: 'none' }}>
+                                                Topic-Owner</Link></Typography> */}
+                                        </Box>
+                                    </>
+                                )}
 
                                 {location.pathname !== "/signup" &&
                                     location.pathname !== '/login' &&

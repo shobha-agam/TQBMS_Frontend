@@ -43,7 +43,7 @@ function OwnerTopicList() {
   return (
     <>
       <div style={{ textAlign: 'center' }}>
-        <h1>  Owner <span style={{ color: "#cf9934" }}>Details</span></h1>
+        <h1>  Owner <span style={{ color: "rgb(207, 153, 52)" }}>Details</span></h1>
 
         <Paper sx={{ width: '70%', marginLeft: '13%' }}>
           <TableContainer sx={{ maxHeight: 400 }}>
@@ -51,7 +51,7 @@ function OwnerTopicList() {
               <TableHead>
                 <TableRow>
                   {columns.map((column) => (
-                    <TableCell style={{ backgroundColor: 'black', color: 'white' }} key={column.id}>{column.name}</TableCell>
+                    <TableCell style={{ backgroundColor: 'rgb(161, 164, 166)', color: 'black' ,fontWeight:'bold'}} key={column.id}>{column.name}</TableCell>
                   ))}
                 </TableRow>
               </TableHead>

@@ -52,7 +52,7 @@ const EditTopic = () => {
             setMessage(response.data.msg);
             if (response.status === 202) {
                 toast.success("Topic Updated Successfully.")
-                    navigate('/topics');
+                    navigate('/topic');
             }
         } catch (error) {
             console.error('Error updating the topic:', error);
@@ -63,7 +63,10 @@ const EditTopic = () => {
     return (
         <>
         <div>
-            <h2>Edit Topic</h2>
+        <div className="showcase">
+        <div className="container">
+          <div className="login-container">
+            <h1>Edit<span style={{ color: "rgb(162, 89, 32)" }}>  Topic</span></h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="name">Name:</label>
@@ -84,9 +87,12 @@ const EditTopic = () => {
                         required
                     />
                 </div>
-                <button type="submit">Update Topic</button>
+                <button type="submit"style={{ marginTop: "40px", marginLeft: "30px" }}>Update Topic</button>
             </form>
             {message && <p>{message}</p>}
+            </div>
+        </div>
+      </div>
         </div>
         <ToastContainer/>
         </>
